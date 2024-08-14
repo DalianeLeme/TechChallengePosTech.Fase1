@@ -2,8 +2,8 @@
 {
     public class Region
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public string DDD { get; set; }
+        public Guid RegionId { get; set; } = Guid.NewGuid();
         public string RegionName { get; set; }
+        public IEnumerable<DDD> DDDs { get; set; }
     }
 }
