@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechChallenge.API\TechChallenge.API.csproj" />
-    <ProjectReference Include="..\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj" />
+    <Folder Include="Models\Base\" />
+    <Folder Include="Models\Responses\" />
+    <Folder Include="Models\Requests\" />
   </ItemGroup>
 
 </Project>

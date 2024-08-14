@@ -10,10 +10,4 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TechChallenge.API\TechChallenge.API.csproj" />
-    <ProjectReference Include="..\TechChallenge.Domain\TechChallenge.Domain.csproj" />
-    <ProjectReference Include="..\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>

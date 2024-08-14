@@ -4,14 +4,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.API", "TechChallenge.API\TechChallenge.API.csproj", "{E91B4161-6CC4-43B0-A1BE-F3C33644DF8A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42A52FD5-1CDD-46F4-97EC-4B669DDB21EC} = {42A52FD5-1CDD-46F4-97EC-4B669DDB21EC}
+		{71FA5ADF-117C-4DC9-88AF-ED2EB23FF117} = {71FA5ADF-117C-4DC9-88AF-ED2EB23FF117}
+		{C02B4402-C430-4271-8AE1-C05CD8BFB387} = {C02B4402-C430-4271-8AE1-C05CD8BFB387}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B00092BB-2CAF-47BD-B612-AF678BE149DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.Application", "TechChallenge.Application\TechChallenge.Application.csproj", "{C02B4402-C430-4271-8AE1-C05CD8BFB387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.Application", "TechChallenge.Application\TechChallenge.Application.csproj", "{C02B4402-C430-4271-8AE1-C05CD8BFB387}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42A52FD5-1CDD-46F4-97EC-4B669DDB21EC} = {42A52FD5-1CDD-46F4-97EC-4B669DDB21EC}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.Infrastructure", "TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj", "{71FA5ADF-117C-4DC9-88AF-ED2EB23FF117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.Infrastructure", "TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj", "{71FA5ADF-117C-4DC9-88AF-ED2EB23FF117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.Domain", "TechChallenge.Domain\TechChallenge.Domain.csproj", "{42A52FD5-1CDD-46F4-97EC-4B669DDB21EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.Domain", "TechChallenge.Domain\TechChallenge.Domain.csproj", "{42A52FD5-1CDD-46F4-97EC-4B669DDB21EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

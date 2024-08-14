@@ -7,3 +7,7 @@
 /TechChallenge.Application/obj
 /TechChallenge.Domain/obj
 /TechChallenge.Infrastructure/obj
+/TechChallenge.API/bin/Debug/net8.0
+/TechChallenge.Domain/bin/Debug/net8.0
+/TechChallenge.Infrastructure/bin/Debug/net8.0
+/TechChallenge.Application/bin/Debug/net8.0

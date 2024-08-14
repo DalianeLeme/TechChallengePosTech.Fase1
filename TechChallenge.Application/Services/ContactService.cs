@@ -1,7 +1,4 @@
-﻿using TechChallenge.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
-
-namespace TechChallenge.Application.Services
+﻿namespace TechChallenge.Application.Services
 {
     public class ContactService
     {
@@ -10,10 +7,10 @@ namespace TechChallenge.Application.Services
             
         }
 
-        public async Task<IActionResult> CreateContact()
-        {
-            var context = new ContactDbContext();
+        //public async Task<IActionResult> CreateContact()
+        //{
+        //    var context = new ContactDbContext();
 
-        }
+        //}
     }
 }

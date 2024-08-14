@@ -11,28 +11,28 @@ namespace TechChallenge.API.Controllers
             
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateContact()
-        {
-            var response = await 
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> CreateContact()
+        //{
+        //    var response = await 
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GetContacts()
         {
-
+            return null;
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateContact()
         {
-
+            return null;
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteContact()
         {
-
+            return null;
         }
     }
 }

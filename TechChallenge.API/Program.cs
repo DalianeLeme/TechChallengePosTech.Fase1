@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using TechChallenge.Infrastructure.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ContactDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao")));
 
 var app = builder.Build();
 
