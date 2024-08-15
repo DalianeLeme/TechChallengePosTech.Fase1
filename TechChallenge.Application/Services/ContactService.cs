@@ -14,12 +14,45 @@ namespace TechChallenge.Application.Services
             _context = context;
         }
 
-        public async Task<CreateContactResponse> CreateContact(CreateContactRequest contact)
+        public Task<CreateContactResponse> CreateContact(CreateContactRequest contact)
         {
             _context.Add(contact);
             _context.SaveChanges();
 
             return new CreateContactResponse
+            {
+                Id = contact.,
+                Name = contact.Name,
+                Email = contact.Email,
+                DDD = contact.DDD,
+                Phone = contact.Phone
+            };
+        }
+            
+        public Task<IList<GetContactResponse>> GetContact(GetContactRequest contact)
+        {
+            var contactDb = _context.Contacts.ToList();
+
+            return contactDb;
+        }
+
+        public Task<UpdateContactResponse> UpdateContact(Guid id, UpdateContactRequest contact)
+        {
+            var contactDb = _context.Contacts.Find(id);
+
+            if (contactDb == null)
+                throw new Exception("Contact not found");
+
+            contactDb.Name = contact.Name;
+            contactDb.Email = contact.Email;
+            contactDb.DDDId = contact.DDD;
+            contactDb.Phone = contact.Phone;
+
+
+            _context.Contacts.Update(contactDb);
+            _context.SaveChanges();
+
+            return new UpdateContactResponse
             {
                 Id = contact.Id,
                 Name = contact.Name,
@@ -28,5 +61,30 @@ namespace TechChallenge.Application.Services
                 Phone = contact.Phone
             };
         }
+
+        public Task<IActiontResult> DeleteContact(Guid id)
+        {
+            var contactDb = _context.Contacts.Find(id);
+
+            if (contactDb == null)
+                throw new Exception("Contact not found");
+
+            _context.Remove(contactDb);
+            _context.SaveChanges();
+
+            return ;
+
+        }
+
+        public Task<IList<GetContactResponse>> GetContactsByDDD()
+        {
+            var contactDb = _context.Contacts.Find();
+
+            if (contactDb.DDDId == null)
+                throw new Exception("DDD not found");
+
+            return contactDb;
+        }
+
     }
 }
