@@ -9,34 +9,39 @@ namespace TechChallenge.Infrastructure.Context
         {
 
         }
+
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<DDD> DDDs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Região: Tem vários DDDs e (Vários Contatos?)
-            //modelBuilder.Entity<Region>()
-            //    .HasMany(c => c.Contacts)
-            //    .WithOne(d => d.Region)
-            //    .HasForeignKey(p => p.ContactId);
-            
-            modelBuilder.Entity<Region>()
-                .HasMany(d => d.DDDs)
-                .WithOne(r => r.RegionId)
-                .HasForeignKey(p => p.DDDId);
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.HasKey(e => e.ContactId);
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Email).IsRequired();
+                entity.Property(e => e.Phone).IsRequired();
 
-            // Contatos: Tem 1 DDD
-            modelBuilder.Entity<Contact>()
-                .HasOne(d => d.DDDId)
+                entity.HasOne(d => d.Ddd)
                 .WithMany(c => c.Contacts)
-                .HasForeignKey(d => d.DDDId);
+                .HasForeignKey(d => d.DddId);
+            });
 
-            // DDD:tem vários contatos e uma região
-            modelBuilder.Entity<DDD>()
-                .HasOne(r => r.RegionId)
+            modelBuilder.Entity<DDD>(entity =>
+            {
+                entity.HasKey(e => e.DDDId);
+
+                entity.HasOne(r => r.Region)
                 .WithMany(c => c.DDDs)
                 .HasForeignKey(r => r.RegionId);
+            });
+
+            modelBuilder.Entity<Region>(entity =>
+            {
+                entity.HasKey(e => e.RegionId);
+                entity.Property(e => e.RegionName).IsRequired();
+            });
         }
     }
 }

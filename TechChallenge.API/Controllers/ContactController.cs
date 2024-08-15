@@ -54,16 +54,16 @@ namespace TechChallenge.API.Controllers
             return response;
        }
 
-       [HttpDelete]
-       [Route("Delete/{id}")]
-       [SwaggerOperation(Summary = "Delete a contact")]
-       [ProducesResponseType(typeof(bool), StatusCodes.Status201Created)]
-       [ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)]
-       [ProducesResponseType(typeof(bool), StatusCodes.Status500InternalServerError)]
-       public async Task<IActionResult> DeleteContact(Guid id)
-       {
-            var response = await _service.DeleteContact(id);
-            return NoContent();
-       }
+       //[HttpDelete]
+       //[Route("Delete/{id}")]
+       //[SwaggerOperation(Summary = "Delete a contact")]
+       //[ProducesResponseType(typeof(bool), StatusCodes.Status201Created)]
+       //[ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)]
+       //[ProducesResponseType(typeof(bool), StatusCodes.Status500InternalServerError)]
+       //public async Task<IActionResult> DeleteContact(Guid id)
+       //{
+       //     var response = await _service.DeleteContact(id);
+       //     return NoContent();
+       //}
     }
  }

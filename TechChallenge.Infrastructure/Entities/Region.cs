@@ -4,6 +4,6 @@
     {
         public Guid RegionId { get; set; } = Guid.NewGuid();
         public string RegionName { get; set; }
-        public IEnumerable<DDD> DDDs { get; set; }
+        public ICollection<DDD> DDDs { get; set; }
     }
 }

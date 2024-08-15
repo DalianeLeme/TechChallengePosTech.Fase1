@@ -3,7 +3,8 @@
     public class DDD
     {
         public Guid DDDId { get; set; } = Guid.NewGuid();
-        public Region RegionId { get; set; }
-        public IEnumerable<Contact> Contacts { get; set; }
+        public Guid RegionId {  get; set; }
+        public Region Region { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
     }
 }

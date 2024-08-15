@@ -8,6 +8,5 @@ namespace TechChallenge.Application.Interfaces
         Task<CreateContactResponse> CreateContact(CreateContactRequest contact);
         Task<IList<GetContactResponse>> GetContact(GetContactRequest contact);
         Task<UpdateContactResponse> UpdateContact(Guid id, UpdateContactRequest contact);
-        Task<IActionResult> DeleteContact(Guid id);
     }
 }
