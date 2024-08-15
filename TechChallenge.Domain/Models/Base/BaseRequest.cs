@@ -24,11 +24,10 @@ namespace TechChallenge.Domain.Models.Base
             DDD = ddd;
             Phone = phone;
         }
-
         public void Validate()
         {
             AddNotifications(
-                 new Contract<CreateContactRequest>()
+                 new Contract<BaseRequest>()
                     .Requires()
                     .IsGreaterThan(Name, 2, "Name", "Nome deve ter no minimo 3 caracteres.")
                     .IsEmail(Email, "Email", "E-mail inválido.")

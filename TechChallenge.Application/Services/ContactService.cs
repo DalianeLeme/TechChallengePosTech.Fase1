@@ -1,4 +1,5 @@
-﻿using TechChallenge.Domain.Models.Requests;
+﻿using System.Data.Entity;
+using TechChallenge.Domain.Models.Requests;
 using TechChallenge.Domain.Models.Responses;
 using TechChallenge.Infrastructure.Context;
 
@@ -32,9 +33,9 @@ namespace TechChallenge.Application.Services
 
         public Task<GetContactResponse> GetContact(GetContactRequest contact)
         {
-            var contacts = _context.Contacts.ToList();
+            var contactsDb = _context.Contacts.ToListAsync();
 
-            return Task.FromResult(contacts);
+            return Task.FromResult(contactsDb);
         }
 
         public Task<UpdateContactResponse> UpdateContact(UpdateContactRequest contact)

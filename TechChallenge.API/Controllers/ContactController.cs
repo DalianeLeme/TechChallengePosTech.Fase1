@@ -42,7 +42,7 @@ namespace TechChallenge.API.Controllers
        }
 
        [HttpPut]
-       [Route("Update/{id}")]
+       [Route("Update")]
        [SwaggerOperation(Summary = "Update a contact")]
        [ProducesResponseType(typeof(UpdateContactResponse), StatusCodes.Status201Created)]
        [ProducesResponseType(typeof(UpdateContactResponse), StatusCodes.Status400BadRequest)]
