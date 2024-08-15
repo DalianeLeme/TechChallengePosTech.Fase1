@@ -2,7 +2,8 @@
 
 namespace TechChallenge.Domain.Models.Responses
 {
-    public class GetContactResponse : BaseResponse
+    public class GetContactResponse
     {
+        public IList<BaseResponse> Contacts { get; set; }
     }
 }

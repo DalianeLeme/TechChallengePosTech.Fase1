@@ -2,7 +2,7 @@
 
 namespace TechChallenge.Domain.Models.Requests
 {
-    public class GetContactRequest : BaseRequest
+    public class GetContactRequest
     {
     }
 }

@@ -5,8 +5,6 @@ namespace TechChallenge.Domain.Models.Responses
 {
     public class CreateContactResponse : BaseResponse
     {
-        public Guid Id { get; set; }
-
         public CreateContactResponse()
         {
         }
