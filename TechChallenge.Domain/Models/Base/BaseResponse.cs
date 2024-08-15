@@ -8,11 +8,6 @@
         public int DDD { get; set; }
         public int Phone { get; set; }
 
-        public BaseResponse()
-        {
-            
-        }
-
         public BaseResponse(Guid id, string name, string email, int ddd, int phone)
         {
             Id = id;

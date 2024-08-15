@@ -55,6 +55,9 @@ namespace TechChallenge.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("DDDCode")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("RegionId")
                         .HasColumnType("uniqueidentifier");
 

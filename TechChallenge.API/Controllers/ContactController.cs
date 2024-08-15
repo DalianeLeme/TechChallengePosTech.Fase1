@@ -6,7 +6,7 @@ using TechChallenge.Domain.Models.Responses;
 
 namespace TechChallenge.API.Controllers
 {
-    [ApiController]
+   [ApiController]
    [Route("[controller]")]
     public class Contacts : ControllerBase
     {
@@ -30,9 +30,9 @@ namespace TechChallenge.API.Controllers
        }
 
        [HttpGet]
-       [Route("AllContacts")]
+       [Route("GetAllContacts")]
        [SwaggerOperation(Summary = "Consult a list of contacts")]
-       [ProducesResponseType(typeof(GetContactResponse), StatusCodes.Status201Created)]
+       [ProducesResponseType(typeof(GetContactResponse), StatusCodes.Status200OK)]
        [ProducesResponseType(typeof(GetContactResponse), StatusCodes.Status400BadRequest)]
        [ProducesResponseType(typeof(GetContactResponse), StatusCodes.Status500InternalServerError)]
        public async Task<GetContactResponse> GetContacts([FromQuery] GetContactRequest request)
@@ -56,7 +56,7 @@ namespace TechChallenge.API.Controllers
         [HttpDelete]
         [Route("Delete/{id}")]
         [SwaggerOperation(Summary = "Delete a contact")]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(bool), StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteContact(Guid id)
@@ -65,7 +65,6 @@ namespace TechChallenge.API.Controllers
                 return Ok();
 
             return NoContent();
-
         }
     }
  }

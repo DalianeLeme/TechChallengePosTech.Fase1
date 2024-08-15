@@ -12,7 +12,7 @@ using TechChallenge.Infrastructure.Context;
 namespace TechChallenge.Infrastructure.Migrations
 {
     [DbContext(typeof(ContactDbContext))]
-    [Migration("20240815022630_CriacaoTabelas")]
+    [Migration("20240815224110_CriacaoTabelas")]
     partial class CriacaoTabelas
     {
         /// <inheritdoc />
@@ -57,6 +57,9 @@ namespace TechChallenge.Infrastructure.Migrations
                     b.Property<Guid>("DDDId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DDDCode")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("RegionId")
                         .HasColumnType("uniqueidentifier");

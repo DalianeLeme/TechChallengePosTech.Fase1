@@ -28,7 +28,8 @@ namespace TechChallenge.Infrastructure.Migrations
                 columns: table => new
                 {
                     DDDId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RegionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    RegionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DDDCode = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

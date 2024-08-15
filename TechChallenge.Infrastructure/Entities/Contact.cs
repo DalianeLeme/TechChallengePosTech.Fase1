@@ -8,5 +8,19 @@
         public int Phone { get; set; }
         public DDD Ddd { get; set; }
         public Guid DddId { get; set; }
+
+        public Contact(Guid contactId, string name, string email, int phone, DDD ddd, Guid dddId)
+        {
+            ContactId = contactId;
+            Name = name;
+            Email = email;
+            Phone = phone;
+            Ddd = ddd;
+            DddId = dddId;
+        }
+        public Contact()
+        {
+            
+        }
     }
 }

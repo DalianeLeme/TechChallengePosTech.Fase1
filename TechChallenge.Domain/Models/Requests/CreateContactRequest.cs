@@ -4,10 +4,8 @@ namespace TechChallenge.Domain.Models.Requests
 {
     public class CreateContactRequest : BaseRequest
     {
-        public CreateContactRequest()
+        public CreateContactRequest(string name, string email, int ddd, int phone) : base(name, email, ddd, phone)
         {
-
         }
-
     }
 }
