@@ -47,9 +47,9 @@ namespace TechChallenge.API.Controllers
        [ProducesResponseType(typeof(UpdateContactResponse), StatusCodes.Status201Created)]
        [ProducesResponseType(typeof(UpdateContactResponse), StatusCodes.Status400BadRequest)]
        [ProducesResponseType(typeof(UpdateContactResponse), StatusCodes.Status500InternalServerError)]
-       public async Task<UpdateContactResponse> UpdateContact([FromHeader] Guid id, [FromBody] UpdateContactRequest request)
+       public async Task<UpdateContactResponse> UpdateContact([FromBody] UpdateContactRequest request)
        {
-            var response = await _service.UpdateContact(id, request);
+            var response = await _service.UpdateContact(request);
             return response;
        }
 

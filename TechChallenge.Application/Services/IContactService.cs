@@ -8,7 +8,7 @@ namespace TechChallenge.Application.Services
     {
         Task<CreateContactResponse> CreateContact(CreateContactRequest contact);
         Task<GetContactResponse> GetContact(GetContactRequest contact);
-        Task<UpdateContactResponse> UpdateContact(Guid id, UpdateContactRequest contact);
+        Task<UpdateContactResponse> UpdateContact(UpdateContactRequest contact);
         bool DeleteContact(Guid id);
     }
 }

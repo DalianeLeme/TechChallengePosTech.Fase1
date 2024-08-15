@@ -2,7 +2,7 @@
 {
     public class Contact
     {
-        public Guid ContactId { get; set; } = Guid.NewGuid();
+        public Guid ContactId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
