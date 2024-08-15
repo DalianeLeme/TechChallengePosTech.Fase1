@@ -1,5 +1,4 @@
-﻿using Azure;
-using TechChallenge.Domain.Models.Requests;
+﻿using TechChallenge.Domain.Models.Requests;
 using TechChallenge.Domain.Models.Responses;
 using TechChallenge.Infrastructure.Context;
 
@@ -47,7 +46,7 @@ namespace TechChallenge.Application.Services
 
             contactDb.Name = contact.Name;
             contactDb.Email = contact.Email;
-            contactDb.Ddd = contact.DDD;
+            (int)contactDb.Ddd = contact.DDD;
             contactDb.Phone = contact.Phone;
 
 

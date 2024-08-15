@@ -36,8 +36,6 @@ namespace TechChallenge.Domain.Models.Base
                     .IsLowerThan(Phone, 10, "Phone", "Telefone tem que ter no máximo 9 números.")
                     .IsGreaterThan(DDD, 10, "DDD está abaixo da faixa no Brasil.")
                     .IsLowerThan(DDD, 100, "DDD está acima da faixa no Brasil.")
-                    .IsGreaterThan(Guid.ToString(), 35, "Guid tem que ter 36 caracteres.")
-                    .IsLowerThan(Guid.ToString(), 37, "Guid tem que ter 36 caracteres.")
             );
 
             if (!Regex.IsMatch(Phone.ToString(), @"^\d+$"))
