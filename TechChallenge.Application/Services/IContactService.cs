@@ -6,9 +6,9 @@ namespace TechChallenge.Application.Services
 {
     public interface IContactService
     {
-        Task<CreateContactResponse> CreateContact(CreateContactRequest contact);
-        Task<GetContactResponse> GetContact(GetContactRequest contact);
-        Task<UpdateContactResponse> UpdateContact(UpdateContactRequest contact);
-        bool DeleteContact(Guid id);
+        Task<CreateContactResponse> CreateContact(CreateContactRequest request);
+        Task<GetContactResponse> GetContact(int? ddd);
+        Task<UpdateContactResponse> UpdateContact(UpdateContactRequest request);
+        void DeleteContact(Guid id);
     }
 }

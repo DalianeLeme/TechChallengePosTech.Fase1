@@ -1,13 +1,22 @@
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using TechChallenge.Application.Services;
 using TechChallenge.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddControllers()
-//    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>()); 
+//builder.Services.AddControllers();
 
+builder.Services.AddControllers().AddFluentValidation(v =>
+{
+    v.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
+
+//builder.Services.AddFluentValidationAutoValidation();
+//builder.Services.AddFluentValidationClientsideAdapters();
+//builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

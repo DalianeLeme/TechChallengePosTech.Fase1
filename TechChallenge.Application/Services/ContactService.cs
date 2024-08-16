@@ -4,6 +4,7 @@ using TechChallenge.Domain.Models.Responses;
 using TechChallenge.Infrastructure.Context;
 using TechChallenge.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
+using Azure.Core;
 
 namespace TechChallenge.Application.Services
 {
@@ -44,16 +45,12 @@ namespace TechChallenge.Application.Services
             return Task.FromResult(response);
         }
 
-        public Task<GetContactResponse> GetContact(GetContactRequest request)
+        public Task<GetContactResponse> GetContact(int? ddd)
         {
-            //if(request.DDD != null)
-            //{
-            //    var contactsDb = _context.Contacts.Where(c => c.Ddd.DDDCode == request.DDD).ToList();
-            //}
-            var contactsDb = _context.Contacts.ToList();
+            var contactsDb = _context.Contacts.Include(d => d.Ddd).ToList();
 
-            if(request.DDD != null)
-                contactsDb = contactsDb.Where(c => c.Ddd.DDDCode == request.DDD).ToList();
+            if(ddd != null)
+                contactsDb = contactsDb.Where(c => c.Ddd.DDDCode == ddd).ToList();
 
             var contacts = new List<BaseResponse>();
 
@@ -67,7 +64,7 @@ namespace TechChallenge.Application.Services
 
         public Task<UpdateContactResponse> UpdateContact(UpdateContactRequest request)
         {
-            var contactDb = _context.Contacts.Include(d => d.Ddd).First(c => c.ContactId == request.Id);
+            var contactDb = _context.Contacts.Include(d => d.Ddd).FirstOrDefault(c => c.ContactId == request.Id);
 
             if (contactDb == null)
                 throw new Exception("Contact not found");
@@ -98,18 +95,15 @@ namespace TechChallenge.Application.Services
             return Task.FromResult(response);
         }
 
-        public bool DeleteContact(Guid id)
+        public void DeleteContact(Guid id)
         {
-            var contactDb = _context.Contacts.Find(id);
+            var contactDb = _context.Contacts.FirstOrDefault(c => c.ContactId == id);
 
             if (contactDb == null)
                 throw new Exception("Contact not found");
 
             _context.Remove(contactDb);
             _context.SaveChanges();
-
-            return true;
-
         }
     }
 }
