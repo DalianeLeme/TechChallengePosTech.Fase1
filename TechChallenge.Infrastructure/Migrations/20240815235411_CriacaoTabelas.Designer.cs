@@ -12,7 +12,7 @@ using TechChallenge.Infrastructure.Context;
 namespace TechChallenge.Infrastructure.Migrations
 {
     [DbContext(typeof(ContactDbContext))]
-    [Migration("20240815224110_CriacaoTabelas")]
+    [Migration("20240815235411_CriacaoTabelas")]
     partial class CriacaoTabelas
     {
         /// <inheritdoc />
@@ -42,8 +42,9 @@ namespace TechChallenge.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactId");
 

@@ -67,7 +67,6 @@ namespace TechChallenge.Application.Services
 
         public Task<UpdateContactResponse> UpdateContact(UpdateContactRequest request)
         {
-            //var contactDb = _context.Contacts.Find(request.Id);
             var contactDb = _context.Contacts.Include(d => d.Ddd).First(c => c.ContactId == request.Id);
 
             if (contactDb == null)

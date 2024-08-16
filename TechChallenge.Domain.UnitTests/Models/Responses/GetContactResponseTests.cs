@@ -12,7 +12,7 @@ namespace TechChallenge.Domain.UnitTests.Models.Responses
         private static readonly string name_contact_1 = "name_1";
         private static readonly string email_contact_1 = "contact_1@email.com";
         private static readonly int ddd_contact_1 = 21;
-        private static readonly int phone_contact_1 = 999999999;
+        private static readonly string phone_contact_1 = "999999999";
 
         private static BaseResponse Contact_1 = new BaseResponse(id_contact_1, name_contact_1, email_contact_1, ddd_contact_1, phone_contact_1);
         #endregion Contact_1
@@ -22,7 +22,7 @@ namespace TechChallenge.Domain.UnitTests.Models.Responses
         private static readonly string name_contact_2 = "name_2";
         private static readonly string email_contact_2 = "contact_2@email.com";
         private static readonly int ddd_contact_2 = 11;
-        private static readonly int phone_contact_2 = 999999998;
+        private static readonly string phone_contact_2 = "999999998";
 
         private static BaseResponse Contact_2 = new BaseResponse(id_contact_2, name_contact_2, email_contact_2, ddd_contact_2, phone_contact_2);
         #endregion Contact_2
@@ -32,7 +32,7 @@ namespace TechChallenge.Domain.UnitTests.Models.Responses
         private static readonly string name_contact_3 = "name_3";
         private static readonly string email_contact_3 = "contact_3@email.com";
         private static readonly int ddd_contact_3 = 21;
-        private static readonly int phone_contact_3 = 999999997;
+        private static readonly string phone_contact_3 = "999999997";
 
         private static BaseResponse Contact_3 = new BaseResponse(id_contact_3, name_contact_3, email_contact_3, ddd_contact_3, phone_contact_3);
         #endregion Contact_3

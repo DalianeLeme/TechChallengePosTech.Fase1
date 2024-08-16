@@ -6,9 +6,9 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public int DDD { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
-        public BaseResponse(Guid id, string name, string email, int ddd, int phone)
+        public BaseResponse(Guid id, string name, string email, int ddd, string phone)
         {
             Id = id;
             Name = name;

@@ -5,7 +5,7 @@ namespace TechChallenge.Domain.Models.Responses
 {
     public class CreateContactResponse : BaseResponse
     {
-        public CreateContactResponse(Guid id, string name, string email, int ddd, int phone) : base(id, name, email, ddd, phone)
+        public CreateContactResponse(Guid id, string name, string email, int ddd, string phone) : base(id, name, email, ddd, phone)
         {
         }
     }
