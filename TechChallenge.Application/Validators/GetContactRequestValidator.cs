@@ -8,7 +8,7 @@ namespace TechChallenge.Application.Validators
     {
         public GetContactRequestValidator()
         {
-            RuleFor(request => request.DDD).GreaterThan(10).LessThan(100).WithMessage("DDD fora da faixa do Brasil.");
+            RuleFor(request => request.DDD).ExclusiveBetween(10, 100).WithMessage("DDD fora da faixa do Brasil.");
         }
     }
 }

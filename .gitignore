@@ -14,3 +14,7 @@
 /TechChallenge.Domain.UnitTests/bin/Debug/net8.0
 /TechChallenge.Domain.UnitTests/obj/Debug/net8.0
 /TechChallenge.Domain.UnitTests/obj
+/TechChallenge.Application.UnitTests/bin
+/TechChallenge.Application.UnitTests/obj
+/TechChallenge.Infrastructure.UnitTests/bin
+/TechChallenge.Infrastructure.UnitTests/obj
