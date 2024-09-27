@@ -18,3 +18,5 @@
 /TechChallenge.Application.UnitTests/obj
 /TechChallenge.Infrastructure.UnitTests/bin
 /TechChallenge.Infrastructure.UnitTests/obj
+/TechChallenge.Application.IntegrationTests/bin
+/TechChallenge.Application.IntegrationTests/obj

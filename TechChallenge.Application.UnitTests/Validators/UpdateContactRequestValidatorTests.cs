@@ -31,6 +31,7 @@ namespace TechChallenge.Application.UnitTests.Validators
         }
 
         [Theory]
+        [Trait("Category", "Unit")]
         [InlineData(null, "Nome obrigatório.")]
         [InlineData("", "Nome obrigatório.")]
         [InlineData("a", "O nome deve possuir no minimo 3 caracteres.")]
@@ -50,6 +51,7 @@ namespace TechChallenge.Application.UnitTests.Validators
         }
 
         [Theory]
+        [Trait("Category", "Unit")]
         [InlineData(null, "Email obrigatório.")]
         [InlineData("", "Email obrigatório.")]
         [InlineData("email", "Email inválido.")]
@@ -69,6 +71,7 @@ namespace TechChallenge.Application.UnitTests.Validators
         }
 
         [Theory]
+        [Trait("Category", "Unit")]
         [InlineData(null, "DDD fora da faixa do Brasil.")]
         [InlineData(9, "DDD fora da faixa do Brasil.")]
         [InlineData(10, "DDD fora da faixa do Brasil.")]
@@ -89,6 +92,7 @@ namespace TechChallenge.Application.UnitTests.Validators
         }
 
         [Theory]
+        [Trait("Category", "Unit")]
         [InlineData(null, "Telefone obrigatório.")]
         [InlineData("", "Telefone obrigatório.")]
         [InlineData("1234567", "O telefone tem que possuir no mínimo 8 números.")]

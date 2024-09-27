@@ -12,8 +12,8 @@ using TechChallenge.Infrastructure.Context;
 namespace TechChallenge.Infrastructure.Migrations
 {
     [DbContext(typeof(ContactDbContext))]
-    [Migration("20240815235411_CriacaoTabelas")]
-    partial class CriacaoTabelas
+    [Migration("20240926031136_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
