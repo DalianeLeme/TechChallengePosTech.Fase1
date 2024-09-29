@@ -9,22 +9,51 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+      - name: Build all projects
+        run: dotnet build --configuration Debug
 
-    - name: Run unit tests
-      run: dotnet test --no-build --verbosity normal --filter "Category=Unit"
+  unit_tests:
+    runs-on: self-hosted
+    needs: build
 
-    - name: Run integration tests
-      run: dotnet test --no-build --verbosity normal --filter "Category=Integration"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Run unit tests
+        run: |
+          dotnet test TechChallenge.Application.UnitTests/TechChallenge.Application.UnitTests.csproj --configuration Debug --no-build --verbosity normal
+          dotnet test TechChallenge.Domain.UnitTests/TechChallenge.Domain.UnitTests.csproj --configuration Debug --no-build --verbosity normal
+          dotnet test TechChallenge.Infrastructure.UnitTests/TechChallenge.Infrastructure.UnitTests.csproj --configuration Debug --no-build --verbosity normal
+
+  integration_tests:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Run integration tests
+        run: dotnet test TechChallenge.Application.IntegrationTests/TechChallenge.Application.IntegrationTests.csproj --configuration Debug --no-build --verbosity normal
