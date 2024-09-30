@@ -36,6 +36,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Build tests projects
+        run: dotnet build --configuration Debug
+
       - name: Run unit tests
         run: |
           dotnet test TechChallenge.Application.UnitTests/TechChallenge.Application.UnitTests.csproj --configuration Debug --no-build --verbosity detailed
