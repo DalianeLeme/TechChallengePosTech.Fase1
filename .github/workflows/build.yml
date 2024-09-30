@@ -2,7 +2,7 @@ name: Workflow build
 
 on:
   push:
-    branches: [ master ]
+    branches: master
 
 jobs:
   build:
@@ -36,14 +36,14 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Build tests projects
+      - name: Build unit tests projects
         run: dotnet build --configuration Debug
 
       - name: Run unit tests
         run: |
-          dotnet test TechChallenge.Application.UnitTests/TechChallenge.Application.UnitTests.csproj --configuration Debug --no-build --verbosity detailed
-          dotnet test TechChallenge.Domain.UnitTests/TechChallenge.Domain.UnitTests.csproj --configuration Debug --no-build --verbosity detailed
-          dotnet test TechChallenge.Infrastructure.UnitTests/TechChallenge.Infrastructure.UnitTests.csproj --configuration Debug --no-build --verbosity detailed
+          dotnet test TechChallenge.Application.UnitTests/TechChallenge.Application.UnitTests.csproj --configuration Debug --no-build --verbosity normal
+          dotnet test TechChallenge.Domain.UnitTests/TechChallenge.Domain.UnitTests.csproj --configuration Debug --no-build --verbosity normal
+          dotnet test TechChallenge.Infrastructure.UnitTests/TechChallenge.Infrastructure.UnitTests.csproj --configuration Debug --no-build --verbosity normal
 
   integration_tests:
     runs-on: self-hosted
@@ -57,6 +57,9 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '8.0.x'
+
+      - name: Build integration tests projects
+        run: dotnet build --configuration Debug
 
       - name: Run integration tests
         run: dotnet test TechChallenge.Application.IntegrationTests/TechChallenge.Application.IntegrationTests.csproj --configuration Debug --no-build --verbosity normal
