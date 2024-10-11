@@ -1,7 +1,6 @@
 <h1 align="center"> Tech Challenge - Pós Tech </h1>
 
-![descrição da imagem](https://cdn.discordapp.com/attachments/1206423657648361555/1294012878399209513/Banners_do_Canva_Docs_e_Texto_Magico_no_5.jpg?ex=670976e7&is=67082567&hm=39db7442964b6cab92b1770f47a9b76ac6909c161413d6001f3f005c6fc94771&
-)
+![Capa com o nome do curso da pós graduação](./Assets/capa-readme.jpg)
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 <br>![GitHub Org's stars](https://img.shields.io/github/stars/DalianeLeme?style=social)</br>
@@ -20,7 +19,7 @@ Um aplicativo de gerenciamento de contatos regionais. </br>
 O projeto é divido em 5 fases, cada fase vai representar uma evolução do projeto, implementando novos comportamentos e funcionalidades.
 <br></br>
 
-# Fase 1
+# :hatching_chick: Fase 1
 Fase inicial onde é criado o projeto e suas camadas, junto cim a persistência de dados.
 
 - `Estrutura`: Uso de DDD (Domain Drive Design) contendo as camadas: </br>
@@ -51,7 +50,7 @@ Fase inicial onde é criado o projeto e suas camadas, junto cim a persistência de
 :hammer: TechChallenge.Infrastructure.UnitTests 
 <br></br>
 
-# Fase 2
+# :hatched_chick: Fase 2
 Implementando práticas de Integração contínua (CI), testes de integração e monitoramento de performance. </br>
 
 - `Pipelines`: Foi integrada a pipeline CI no GitHub Actions, com os jobs: </br>
@@ -66,7 +65,13 @@ Implementando práticas de Integração contínua (CI), testes de integração e monit
 :small_red_triangle_down: contacts_http_requests_total: para calcular quantidade de requisíções por status code. </br>
 
 - `Grafana`: Criação do dashboard com os painéis para monitoramento das métricas coletadas pelo prometheus. </br>
-
+:red_circle: Painéis para monitoramento de Tempo total acumulado gasto em todas as requisições / número total de requisições feitas ao endpoint. Exibindo quantas requisições foram feitas naquele intervalo de latência. 
+![Descrição da imagem](./Assets/Latencia-por-requisicoes.png)
+:red_circle: Painéis para monitoramento da latência ao longo do tempo, em um rate de 1m. E um painel para exibição da latência média de todas as requisições para todos os endpoints.
+![Descrição da imagem](./Assets/Latencia-por-tempo.png)
+:red_circle: Painéis para monitoramento do uso de recursos do sistema como CPU e Memória, mais um painel que exibe a contagem de requisições por status code.
+![Descrição da imagem](./Assets/metricas-sistema.png)
+- 
 - `Testes de Integração`: Testes para verificar o funcionamento correto da integração com o banco de dados. </br>
 :mag_right: TechChallenge.Application.IntegrationTests
 <br></br>
