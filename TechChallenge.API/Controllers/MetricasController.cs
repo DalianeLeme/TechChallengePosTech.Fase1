@@ -9,115 +9,153 @@ namespace TechChallenge.API.Controllers
     [Route("api/[controller]")]
     public class MetricasController : ControllerBase
     {
-        static readonly Histogram RequestDuration = Metrics.CreateHistogram(
-            "http_request_duration_seconds",
-            "Histogram of HTTP request durations in seconds",
+        // Definindo um histograma para medir a latência das requisições HTTP
+        private static readonly Histogram RequestDuration = Metrics.CreateHistogram(
+            "contacts_request_duration_milliseconds",
+            "Histograma de latências para cada endpoint de ContactsController",
             new HistogramConfiguration
             {
-                Buckets = Histogram.LinearBuckets(start: 0.1, width: 0.1, count: 10)
+                LabelNames = new[] { "path", "method" },
+                Buckets = Histogram.LinearBuckets(start: 10, width: 100, count: 10)
             }
         );
 
-        // Gauge para monitorar o uso da CPU
         private static readonly Gauge CpuUsageGauge = Metrics.CreateGauge(
             "cpu_usage_percentage",
-            "Current CPU usage in percentage"
+            "Uso da CPU em tempo real em porcentagem"
         );
 
-        // Gauge para monitorar o uso de memória
         private static readonly Gauge MemoryUsageGauge = Metrics.CreateGauge(
             "memory_usage_bytes",
-            "Current memory usage in bytes"
+            "Uso de memória em tempo real em bytes"
         );
 
+        private readonly IHttpClientFactory _httpClientFactory;
+        private static readonly Stopwatch UptimeStopwatch = Stopwatch.StartNew();
 
-        // Método para obter o uso da CPU
+        public MetricasController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
         private float GetCpuUsage()
         {
-            // PerformanceCounter é usado para capturar o uso da CPU
             var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            cpuCounter.NextValue(); // A primeira leitura sempre retorna 0, então descartamos a primeira
-            System.Threading.Thread.Sleep(1000); // Pausa de 1 segundo para obter um valor correto
+            cpuCounter.NextValue(); 
+            System.Threading.Thread.Sleep(1000);
             return cpuCounter.NextValue();
         }
 
-        // Método para obter o uso da memória
         private long GetMemoryUsage()
         {
-            // Obtém a memória alocada no processo atual
             return Process.GetCurrentProcess().WorkingSet64;
         }
 
-        // Endpoint para expor métricas para o Prometheus
+        private async Task<(double, string)> MeasureLatency(string path, string method)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var stopwatch = Stopwatch.StartNew();
+
+            HttpResponseMessage response;
+
+            switch (method)
+            {
+                case "GET":
+                    response = await client.GetAsync(path);
+                    break;
+                case "POST":
+                    response = await client.PostAsync(path, null);
+                    break;
+                case "PUT":
+                    response = await client.PutAsync(path, null);
+                    break;
+                case "DELETE":
+                    response = await client.DeleteAsync(path);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid HTTP method");
+            }
+
+            stopwatch.Stop();
+            var latency = stopwatch.Elapsed.TotalSeconds;
+            var latencyInMs = latency * 1000;
+            
+            RequestDuration.WithLabels(path, method).Observe(latency);
+
+            var content = await response.Content.ReadAsStringAsync();
+            return (latency, content);
+        }
+         
         [HttpGet("metrics")]
         public async Task<IActionResult> GetMetrics()
         {
-            // Atualiza a métrica de uso de CPU
             CpuUsageGauge.Set(GetCpuUsage());
 
-            // Atualiza a métrica de uso de memória
             MemoryUsageGauge.Set(GetMemoryUsage());
 
-            // Buffer para armazenar as métricas exportadas
             var metricsBuffer = new StringBuilder();
 
-            // Coleta e exporta as métricas no formato de texto
             await using (var stream = new MemoryStream())
             {
                 await Metrics.DefaultRegistry.CollectAndExportAsTextAsync(stream);
-                stream.Position = 0; // Resetar a posição do stream para leitura
+                stream.Position = 0;
                 using (var reader = new StreamReader(stream))
                 {
                     metricsBuffer.Append(await reader.ReadToEndAsync());
                 }
             }
 
-            // Retorna o conteúdo como texto/plain
             return Content(metricsBuffer.ToString(), "text/plain");
         }
 
-        // Endpoint para medir latência de requisições HTTP
-        [HttpGet("Latencia")]
-        public IActionResult GetLatencias()
-        {
-            // Inicia a medição do tempo
-            var stopwatch = Stopwatch.StartNew();
-
-            // Simulação de um processamento que leva tempo
-            System.Threading.Thread.Sleep(100);
-
-            // Para a medição do tempo
-            stopwatch.Stop();
-
-            // Registra a latência no histograma
-            RequestDuration
-                .WithLabels(Request.Path, Request.Method)
-                .Observe(stopwatch.Elapsed.TotalSeconds);
-
-            return Ok("Latency measured!");
-        }
-
-
-        // Endpoint para verificar o uso da CPU em tempo real
         [HttpGet("CPU")]
         public IActionResult GetCpuUsageMetric()
         {
             var cpuUsage = GetCpuUsage();
-            // Atualiza a métrica de uso de CPU
             CpuUsageGauge.Set(cpuUsage);
 
-            return Ok($"Current CPU usage: {cpuUsage}%");
+            return Ok($"Uso da CPU: {cpuUsage}%");
         }
 
-        // Endpoint para verificar o uso de memória em tempo real
         [HttpGet("Memory")]
         public IActionResult GetMemoryUsageMetric()
         {
             var memoryUsage = GetMemoryUsage();
-            // Atualiza a métrica de uso de memória
             MemoryUsageGauge.Set(memoryUsage);
 
-            return Ok($"Current memory usage: {memoryUsage / (1024 * 1024)} MB");
+            return Ok($"Uso da memória: {memoryUsage / (1024 * 1024)} MB");
+        }
+    
+        [HttpGet("latency/CreateContact")]
+        public async Task<IActionResult> GetCreateContactLatency()
+        {
+            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Create", "POST");
+            var latencyInMs = latency * 1000;
+            return Ok($"CreateContact Latency: {latencyInMs} ms\nResponse Content: {content}");
+        }
+
+        [HttpGet("latency/GetAllContacts")]
+        public async Task<IActionResult> GetGetContactsLatency()
+        {
+            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/GetAllContacts", "GET");
+            var latencyInMs = latency * 1000;
+            return Ok($"GetContacts Latency: {latencyInMs} ms\nResponse Content: {content}");
+        }
+
+        [HttpGet("latency/UpdateContact")]
+        public async Task<IActionResult> GetUpdateContactLatency()
+        {
+            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Update", "PUT");
+            var latencyInMs = latency * 1000;
+            return Ok($"UpdateContact Latency: {latencyInMs} ms\nResponse Content: {content}");
+        }
+
+        [HttpGet("latency/DeleteContact")]
+        public async Task<IActionResult> GetDeleteContactLatency()
+        {
+            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Delete/1", "DELETE");
+            var latencyInMs = latency * 1000;
+            return Ok($"DeleteContact Latency: {latencyInMs} ms\nResponse Content: {content}");
         }
     }
 }

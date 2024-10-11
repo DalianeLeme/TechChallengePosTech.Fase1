@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using TechChallenge.Application.Services;
 using TechChallenge.Domain.Models.Requests;
 using TechChallenge.Infrastructure.Context;
-using TechChallenge.Infrastructure.Entities;
 
 namespace TechChallenge.Application.IntegrationTests
 {
@@ -63,6 +62,19 @@ namespace TechChallenge.Application.IntegrationTests
 
         [Fact]
         [Trait("Category", "Integration")]
+        public async Task GetContact_WithDDDFilter_ShouldReturnFilteredContacts()
+        {
+            int dddToFilter = 11;
+
+            var response = await _service.GetContact(dddToFilter);
+
+            Assert.NotNull(response);
+            Assert.NotEmpty(response.Contacts);
+            Assert.All(response.Contacts, contact => Assert.Equal(dddToFilter, contact.DDD));
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
         public async Task UpdateContact_ShouldModifyContactInDatabase()
         {
             var contact = _context.Contacts.First();
@@ -72,7 +84,7 @@ namespace TechChallenge.Application.IntegrationTests
                "dalia@exemplo.com",
                21,
                "987654321"
-    );
+            );
 
             var response = await _service.UpdateContact(request);
 
@@ -95,6 +107,19 @@ namespace TechChallenge.Application.IntegrationTests
 
             var deletedContact = await _context.Contacts.FirstOrDefaultAsync(c => c.ContactId == contact.ContactId);
             Assert.Null(deletedContact);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task DeleteContact_NonExistingContact_ShouldThrowException()
+        {
+            var nonExistingContactId = Guid.NewGuid();
+
+            var exception = await Assert.ThrowsAsync<Exception>(() =>
+                Task.Run(() => _service.DeleteContact(nonExistingContactId))
+            );
+
+            Assert.Equal("Contact not found", exception.Message);
         }
 
         public void Dispose()
