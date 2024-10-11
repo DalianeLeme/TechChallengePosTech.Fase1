@@ -1,86 +1,86 @@
-<h1 align="center"> Tech Challenge - PÛs Tech </h1>
+Ôªø<h1 align="center"> Tech Challenge - P√≥s Tech </h1>
 
-![Capa com o nome do curso da pÛs graduaÁ„o](./Assets/capa-readme.jpg)
+![Capa com o nome do curso da p√≥s gradua√ß√£o](./Assets/capa-readme.jpg)
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 <br>![GitHub Org's stars](https://img.shields.io/github/stars/DalianeLeme?style=social)</br>
 
-# Õndice 
+# √çndice 
 
-* [DescriÁ„o do Projeto](#DescriÁ„o-do-projeto)
+* [Descri√ß√£o do Projeto](#Descri√ß√£o-do-projeto)
 * [Fase 1](#Fase-1)
 * [Fase 2](#Fase-2)
 * [Fase 3](#Fase-3)
-* [TÈcnicas e tecnologias utilizadas](#TÈcnicas-e-tecnologias-utilizadas)
+* [T√©cnicas e tecnologias utilizadas](#T√©cnicas-e-tecnologias-utilizadas)
 
-# :pushpin: DescriÁ„o do projeto
-API em .NET8 feita para entrega dos Tech Chanllenges da PÛs Tech FIAP. <br>
+# :pushpin: Descri√ß√£o do projeto
+API em .NET8 feita para entrega dos Tech Chanllenges da P√≥s Tech FIAP. <br>
 Um aplicativo de gerenciamento de contatos regionais. </br>
-O projeto È divido em 5 fases, cada fase vai representar uma evoluÁ„o do projeto, implementando novos comportamentos e funcionalidades.
+O projeto √© divido em 5 fases, cada fase vai representar uma evolu√ß√£o do projeto, implementando novos comportamentos e funcionalidades.
 <br></br>
 
-# :hatching_chick: Fase 1
-Fase inicial onde È criado o projeto e suas camadas, junto cim a persistÍncia de dados.
+# ü•ö Fase 1
+Fase inicial onde √© criado o projeto e suas camadas, junto cim a persist√™ncia de dados.
 
 - `Estrutura`: Uso de DDD (Domain Drive Design) contendo as camadas: </br>
 :bookmark_tabs:API: controllers </br>
-:bookmark_tabs:Application: services e validaÁıes </br>
+:bookmark_tabs:Application: services e valida√ß√µes </br>
 :bookmark_tabs:Domain: Models de requests e responses </br>
-:bookmark_tabs:Infrastructure: conex„o com o banco, implementÁ„o do EF </br>
+:bookmark_tabs:Infrastructure: conex√£o com o banco, implement√ß√£o do EF </br>
 
-- `Endpoints`: Foram criados os 4 endpoints para cadastro, consulta, atualizaÁ„o e exclus„o de contatos. </br>
-:small_red_triangle_down: `POST` /Contacts/Create: CriaÁ„o do contato </br>
+- `Endpoints`: Foram criados os 4 endpoints para cadastro, consulta, atualiza√ß√£o e exclus√£o de contatos. </br>
+:small_red_triangle_down: `POST` /Contacts/Create: Cria√ß√£o do contato </br>
 :small_red_triangle_down: `GET` /Contacts/GetAllContacts: Consulta de contatos com filtro por DDD </br>
-:small_red_triangle_down: `PUT` /Contacts/Update: AtualizaÁ„o do contato por Id </br>
-:small_red_triangle_down: `DELETE` /Contacts/Delete/{id}: Exclus„o do contato por Id </br>
+:small_red_triangle_down: `PUT` /Contacts/Update: Atualiza√ß√£o do contato por Id </br>
+:small_red_triangle_down: `DELETE` /Contacts/Delete/{id}: Exclus√£o do contato por Id </br>
 
-- `Banco de dados`: Foi usado o banco SQL Server e para a persistÍncia de dados foi usado o Entity Framework, contando com uma estrutura de tabelas relacionando contatos com seus DDDs e a regi„o de cada DDD. </br>
+- `Banco de dados`: Foi usado o banco SQL Server e para a persist√™ncia de dados foi usado o Entity Framework, contando com uma estrutura de tabelas relacionando contatos com seus DDDs e a regi√£o de cada DDD. </br>
 :file_folder: Tabela Contacts </br>
 :file_folder: Tabela DDDs </br>
 :file_folder: Tabela Regions </br>
 
-- `ValidaÁıes`: Usada a lib FluentValidation, validando cada dado da requisiÁ„o e impedindo a manipulaÁ„o errada de dados. Foi criado um modelo de validaÁ„o para cada mÈtodo http. </br>
+- `Valida√ß√µes`: Usada a lib FluentValidation, validando cada dado da requisi√ß√£o e impedindo a manipula√ß√£o errada de dados. Foi criado um modelo de valida√ß√£o para cada m√©todo http. </br>
 :small_orange_diamond: CreateContactRequestValidator </br>
 :small_orange_diamond: GetContactRequestValidator </br>
 :small_orange_diamond: UpdateContactRequestValidator </br>
 
-- `Testes unit·rios`: Testes unit·rios foram feitos em xUnit para cada camada do projeto. </br>
+- `Testes unit√°rios`: Testes unit√°rios foram feitos em xUnit para cada camada do projeto. </br>
 :hammer: TechChallenge.Application.UnitTests </br>
 :hammer: TechChallenge.Domain.UnitTests </br>
 :hammer: TechChallenge.Infrastructure.UnitTests 
 <br></br>
 
-# :hatched_chick: Fase 2
-Implementando pr·ticas de IntegraÁ„o contÌnua (CI), testes de integraÁ„o e monitoramento de performance. </br>
+# :hatching_chick: Fase 2
+Implementando pr√°ticas de Integra√ß√£o cont√≠nua (CI), testes de integra√ß√£o e monitoramento de performance. </br>
 
 - `Pipelines`: Foi integrada a pipeline CI no GitHub Actions, com os jobs: </br>
-:clock1230: build: compilar o projeto e garantir que n„o h· erros. </br>
-:clock1230: unit_tests: executar os testes unit·rios. </br>
-:clock1230: integration_tests: executar os testes de integraÁ„o. </br>
+:clock1230: build: compilar o projeto e garantir que n√£o h√° erros. </br>
+:clock1230: unit_tests: executar os testes unit√°rios. </br>
+:clock1230: integration_tests: executar os testes de integra√ß√£o. </br>
 
-- `Prometheus`: Integrei o prometheus para coletar as mÈtricas do aplicativo, criado o endpoint /metrics. </br>
-:small_red_triangle_down: contacts_request_duration_milliseconds: para calcular a latÍncia das requisiÁıes. </br>
+- `Prometheus`: Integrei o prometheus para coletar as m√©tricas do aplicativo, criado o endpoint /metrics. </br>
+:small_red_triangle_down: contacts_request_duration_milliseconds: para calcular a lat√™ncia das requisi√ß√µes. </br>
 :small_red_triangle_down: cpu_usage_percentage: gauge para medir o uso da CPU. </br>
-:small_red_triangle_down: memory_usage_bytes: gauge para medir o uso da memÛria. </br>
-:small_red_triangle_down: contacts_http_requests_total: para calcular quantidade de requisÌÁıes por status code. </br>
+:small_red_triangle_down: memory_usage_bytes: gauge para medir o uso da mem√≥ria. </br>
+:small_red_triangle_down: contacts_http_requests_total: para calcular quantidade de requis√≠√ß√µes por status code. </br>
 
-- `Grafana`: CriaÁ„o do dashboard com os painÈis para monitoramento das mÈtricas coletadas pelo prometheus. </br>
-:red_circle: PainÈis para monitoramento de Tempo total acumulado gasto em todas as requisiÁıes / n˙mero total de requisiÁıes feitas ao endpoint. Exibindo quantas requisiÁıes foram feitas naquele intervalo de latÍncia. 
-![DescriÁ„o da imagem](./Assets/Latencia-por-requisicoes.png)
-:red_circle: PainÈis para monitoramento da latÍncia ao longo do tempo, em um rate de 1m. E um painel para exibiÁ„o da latÍncia mÈdia de todas as requisiÁıes para todos os endpoints.
-![DescriÁ„o da imagem](./Assets/Latencia-por-tempo.png)
-:red_circle: PainÈis para monitoramento do uso de recursos do sistema como CPU e MemÛria, mais um painel que exibe a contagem de requisiÁıes por status code.
-![DescriÁ„o da imagem](./Assets/metricas-sistema.png)
-- 
-- `Testes de IntegraÁ„o`: Testes para verificar o funcionamento correto da integraÁ„o com o banco de dados. </br>
+- `Grafana`: Cria√ß√£o do dashboard com os pain√©is para monitoramento das m√©tricas coletadas pelo prometheus. </br>
+:red_circle: Pain√©is para monitoramento de Tempo total acumulado gasto em todas as requisi√ß√µes / n√∫mero total de requisi√ß√µes feitas ao endpoint. Exibindo quantas requisi√ß√µes foram feitas naquele intervalo de lat√™ncia. 
+![Descri√ß√£o da imagem](./Assets/Latencia-por-requisicoes.png)
+:red_circle: Pain√©is para monitoramento da lat√™ncia ao longo do tempo, em um rate de 1m. E um painel para exibi√ß√£o da lat√™ncia m√©dia de todas as requisi√ß√µes para todos os endpoints.
+![Descri√ß√£o da imagem](./Assets/Latencia-por-tempo.png)
+:red_circle: Pain√©is para monitoramento do uso de recursos do sistema como CPU e Mem√≥ria, mais um painel que exibe a contagem de requisi√ß√µes por status code.
+![Descri√ß√£o da imagem](./Assets/metricas-sistema.png)
+
+- `Testes de Integra√ß√£o`: Testes para verificar o funcionamento correto da integra√ß√£o com o banco de dados. </br>
 :mag_right: TechChallenge.Application.IntegrationTests
 <br></br>
 
 # Fase 3
-:construction:  Projeto em construÁ„o  :construction:
+:construction:  Projeto em constru√ß√£o  :construction:
 <br></br>
 
 
-# :heavy_check_mark: TÈcnicas e tecnologias utilizadas
-`.NET8` `C#` `SQL Server` `GitHub Actions` `Prometheus` `Grafana` `Testes unit·rios` `Testes de IntegraÁ„o` `xUnit` `EntityFramework`
+# :heavy_check_mark: T√©cnicas e tecnologias utilizadas
+`.NET8` `C#` `SQL Server` `GitHub Actions` `Prometheus` `Grafana` `Testes unit√°rios` `Testes de Integra√ß√£o` `xUnit` `EntityFramework`
 `FluentValidator`
