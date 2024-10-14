@@ -88,3 +88,4 @@ Implementando práticas de Integração contínua (CI), testes de integração e
 
 # :busts_in_silhouette: Autores
 [<img loading="lazy" src="https://avatars.githubusercontent.com/u/55365144?v=4" width=115><br><sub>Daliane Leme</sub>](https://github.com/DalianeLeme)
+<br></br>
