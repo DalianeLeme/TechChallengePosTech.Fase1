@@ -84,3 +84,7 @@ Implementando práticas de Integração contínua (CI), testes de integração e
 # :heavy_check_mark: Técnicas e tecnologias utilizadas
 `.NET8` `C#` `SQL Server` `GitHub Actions` `Prometheus` `Grafana` `Testes unitários` `Testes de Integração` `xUnit` `EntityFramework`
 `FluentValidator`
+<br></br>
+
+# :busts_in_silhouette: Autores
+[<img loading="lazy" src="https://avatars.githubusercontent.com/u/55365144?v=4" width=115><br><sub>Daliane Leme</sub>](https://github.com/DalianeLeme)
