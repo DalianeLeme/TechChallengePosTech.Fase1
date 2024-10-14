@@ -9,7 +9,6 @@ namespace TechChallenge.API.Controllers
     [Route("api/[controller]")]
     public class MetricasController : ControllerBase
     {
-        // Definindo um histograma para medir a latência das requisições HTTP
         private static readonly Histogram RequestDuration = Metrics.CreateHistogram(
             "contacts_request_duration_milliseconds",
             "Histograma de latências para cada endpoint de ContactsController",
