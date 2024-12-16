@@ -20,3 +20,13 @@
 /TechChallenge.Infrastructure.UnitTests/obj
 /TechChallenge.Application.IntegrationTests/bin
 /TechChallenge.Application.IntegrationTests/obj
+/CreateContactService/bin/Debug/net8.0
+/CreateContactService/obj
+/DataPersistenceService/bin/Debug/net8.0
+/DataPersistenceService/obj
+/DeleteContactService/bin/Debug/net8.0
+/DeleteContactService/obj
+/GetContactService/bin/Debug/net8.0
+/GetContactService/obj
+/UpdateContactService/bin/Debug/net8.0
+/UpdateContactService/obj

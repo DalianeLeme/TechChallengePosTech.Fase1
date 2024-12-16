@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Polly" Version="8.5.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CreateContactService\CreateContactService.csproj" />
+    <ProjectReference Include="..\DeleteContactService\DeleteContactService.csproj" />
+    <ProjectReference Include="..\GetContactService\GetContactService.csproj" />
+    <ProjectReference Include="..\TechChallenge.Application\TechChallenge.Application.csproj" />
+    <ProjectReference Include="..\TechChallenge.Domain\TechChallenge.Domain.csproj" />
+    <ProjectReference Include="..\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj" />
+    <ProjectReference Include="..\UpdateContactService\UpdateContactService.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -125,36 +125,36 @@ namespace TechChallenge.API.Controllers
             return Ok($"Uso da memória: {memoryUsage / (1024 * 1024)} MB");
         }
     
-        [HttpGet("latency/CreateContact")]
-        public async Task<IActionResult> GetCreateContactLatency()
-        {
-            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Create", "POST");
-            var latencyInMs = latency * 1000;
-            return Ok($"CreateContact Latency: {latencyInMs} ms\nResponse Content: {content}");
-        }
+        //[HttpGet("latency/CreateContact")]
+        //public async Task<IActionResult> GetCreateContactLatency()
+        //{
+        //    var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Create", "POST");
+        //    var latencyInMs = latency * 1000;
+        //    return Ok($"CreateContact Latency: {latencyInMs} ms\nResponse Content: {content}");
+        //}
 
-        [HttpGet("latency/GetAllContacts")]
-        public async Task<IActionResult> GetGetContactsLatency()
-        {
-            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/GetAllContacts", "GET");
-            var latencyInMs = latency * 1000;
-            return Ok($"GetContacts Latency: {latencyInMs} ms\nResponse Content: {content}");
-        }
+        //[HttpGet("latency/GetAllContacts")]
+        //public async Task<IActionResult> GetGetContactsLatency()
+        //{
+        //    var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/GetAllContacts", "GET");
+        //    var latencyInMs = latency * 1000;
+        //    return Ok($"GetContacts Latency: {latencyInMs} ms\nResponse Content: {content}");
+        //}
 
-        [HttpGet("latency/UpdateContact")]
-        public async Task<IActionResult> GetUpdateContactLatency()
-        {
-            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Update", "PUT");
-            var latencyInMs = latency * 1000;
-            return Ok($"UpdateContact Latency: {latencyInMs} ms\nResponse Content: {content}");
-        }
+        //[HttpGet("latency/UpdateContact")]
+        //public async Task<IActionResult> GetUpdateContactLatency()
+        //{
+        //    var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Update", "PUT");
+        //    var latencyInMs = latency * 1000;
+        //    return Ok($"UpdateContact Latency: {latencyInMs} ms\nResponse Content: {content}");
+        //}
 
-        [HttpGet("latency/DeleteContact")]
-        public async Task<IActionResult> GetDeleteContactLatency()
-        {
-            var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Delete/1", "DELETE");
-            var latencyInMs = latency * 1000;
-            return Ok($"DeleteContact Latency: {latencyInMs} ms\nResponse Content: {content}");
-        }
+        //[HttpGet("latency/DeleteContact")]
+        //public async Task<IActionResult> GetDeleteContactLatency()
+        //{
+        //    var (latency, content) = await MeasureLatency("https://localhost:44331/Contacts/Delete/1", "DELETE");
+        //    var latencyInMs = latency * 1000;
+        //    return Ok($"DeleteContact Latency: {latencyInMs} ms\nResponse Content: {content}");
+        //}
     }
 }

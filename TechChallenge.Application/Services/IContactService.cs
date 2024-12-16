@@ -9,6 +9,6 @@ namespace TechChallenge.Application.Services
         Task<CreateContactResponse> CreateContact(CreateContactRequest request);
         Task<GetContactResponse> GetContact(int? ddd);
         Task<UpdateContactResponse> UpdateContact(UpdateContactRequest request);
-        void DeleteContact(Guid id);
+        Task DeleteContact(Guid id);
     }
 }

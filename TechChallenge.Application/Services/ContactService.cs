@@ -95,15 +95,15 @@ namespace TechChallenge.Application.Services
             return Task.FromResult(response);
         }
 
-        public void DeleteContact(Guid id)
+        public async Task DeleteContact(Guid id)
         {
-            var contactDb = _context.Contacts.FirstOrDefault(c => c.ContactId == id);
+            var contactDb = await _context.Contacts.FirstOrDefaultAsync(c => c.ContactId == id);
 
             if (contactDb == null)
                 throw new Exception("Contact not found");
 
             _context.Remove(contactDb);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

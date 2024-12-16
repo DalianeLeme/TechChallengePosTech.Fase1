@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "CreateContactService\\CreateContactService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "GetContactService\\GetContactService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "UpdateContactService\\UpdateContactService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "DeleteContactService\\DeleteContactService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "DataPersistenceService\\DataPersistenceService.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
