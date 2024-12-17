@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prometheus;
-using Swashbuckle.AspNetCore.Annotations;
 using TechChallenge.Application.Validators;
 using TechChallenge.Domain.Models.Requests;
 using TechChallenge.Infrastructure.Messaging;
@@ -36,7 +35,6 @@ namespace UpdateContactService.Controllers
         {
             try
             {
-                // Validação do request
                 var validator = new UpdateContactRequestValidator();
                 var requestValidation = validator.Validate(request);
 
@@ -46,17 +44,14 @@ namespace UpdateContactService.Controllers
                     return BadRequest(requestValidation.Errors);
                 }
 
-                // Publica a mensagem na fila para o serviço de persistência
                 await _publisher.Publish(request, "update_contact_queue");
 
-                // Incrementa a métrica de sucesso
                 httpRequestCounter.WithLabels("202", "PUT", "/contacts/update").Inc();
 
                 return Accepted("Update request sent to the queue.");
             }
             catch (Exception ex)
             {
-                // Incrementa a métrica de erro
                 httpRequestCounter.WithLabels("500", "PUT", "/contacts/update").Inc();
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }

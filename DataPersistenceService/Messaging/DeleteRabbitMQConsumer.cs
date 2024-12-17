@@ -73,7 +73,6 @@ public class DeleteRabbitMQConsumer
                 {
                     _logger.LogInformation($"Mensagem recebida da fila {_queueName}: {message}");
 
-                    // Processar mensagem como Guid
                     var contactId = JsonSerializer.Deserialize<Guid>(message);
                     if (contactId != Guid.Empty)
                     {

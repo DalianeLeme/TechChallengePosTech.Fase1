@@ -30,7 +30,6 @@ builder.Services.AddSingleton<DeleteRabbitMQConsumer>();
 
 var app = builder.Build();
 
-// Configurar Swagger (se estiver no ambiente de desenvolvimento)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -41,7 +40,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// Resolvendo os consumidores
+// Consumidores
 var createConsumer = app.Services.GetRequiredService<CreateRabbitMQConsumer>();
 var updateConsumer = app.Services.GetRequiredService<UpdateRabbitMQConsumer>();
 var deleteConsumer = app.Services.GetRequiredService<DeleteRabbitMQConsumer>();

@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechChallenge.API\TechChallenge.API.csproj" />
     <ProjectReference Include="..\TechChallenge.Application\TechChallenge.Application.csproj" />
     <ProjectReference Include="..\TechChallenge.Domain\TechChallenge.Domain.csproj" />
     <ProjectReference Include="..\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj" />

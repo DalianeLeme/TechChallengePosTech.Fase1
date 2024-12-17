@@ -12,7 +12,6 @@ public class GetRabbitMQConsumer
     private readonly string _hostname = "localhost";
     private readonly string _inputQueueName = "get_contacts_queue";
 
-    // Lista para armazenar os dados processados
     private readonly List<string> _processedData = new();
     public List<string> GetProcessedData() => _processedData;
 
@@ -24,7 +23,6 @@ public class GetRabbitMQConsumer
 
     public async Task StartConsumingAsync()
     {
-        // Configuração do Polly com políticas de retry e circuit breaker
         var retryPolicy = Policy.Handle<Exception>().RetryAsync(3, onRetry: (exception, retryCount) =>
         {
             _logger.LogWarning($"Retry {retryCount} devido a erro: {exception.Message}");
@@ -65,7 +63,6 @@ public class GetRabbitMQConsumer
         await using var connection = await factory.CreateConnectionAsync();
         await using var channel = await connection.CreateChannelAsync();
 
-        // Declarar a fila
         await channel.QueueDeclareAsync(
             queue: _inputQueueName,
             durable: true,
@@ -89,7 +86,6 @@ public class GetRabbitMQConsumer
                 var contactService = scope.ServiceProvider.GetRequiredService<IContactService>();
                 var result = await contactService.GetContact(ddd);
 
-                // Serializar e armazenar os dados processados
                 var processedMessage = JsonSerializer.Serialize(result);
                 _processedData.Add(processedMessage);
 

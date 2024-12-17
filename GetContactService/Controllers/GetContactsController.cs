@@ -35,25 +35,20 @@ namespace GetContactService.Controllers
         {
             try
             {
-                // Verifica se o DDD fornecido é válido (opcional, ajuste conforme necessário)
                 if (ddd.HasValue && (ddd < 11 || ddd > 99))
                 {
                     httpRequestCounter.WithLabels("400", "GET", "/contacts/getallcontacts").Inc();
                     return BadRequest("Invalid DDD provided. It must be a two-digit number.");
                 }
 
-                // Publica a solicitação na fila RabbitMQ para busca de contatos
                 await _publisher.Publish(ddd, "get_contacts_queue");
 
-                // Incrementa a métrica de sucesso
                 httpRequestCounter.WithLabels("202", "GET", "/contacts/getallcontacts").Inc();
 
-                // Retorna aceitação da solicitação
                 return Accepted("Request to retrieve contacts sent for processing.");
             }
             catch (Exception ex)
             {
-                // Incrementa a métrica de erro
                 httpRequestCounter.WithLabels("500", "GET", "/contacts/getallcontacts").Inc();
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }

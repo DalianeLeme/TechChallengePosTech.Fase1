@@ -30,7 +30,7 @@ namespace CreateContactService.Controllers
         [HttpPost]
         [Route("Create")]
         [SwaggerOperation(Summary = "Create a contact")]
-        [ProducesResponseType(typeof(CreateContactResponse), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(CreateContactResponse), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(CreateContactResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(CreateContactResponse), StatusCodes.Status500InternalServerError)]
 

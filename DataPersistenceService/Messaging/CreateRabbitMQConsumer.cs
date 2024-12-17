@@ -59,10 +59,8 @@ public class CreateRabbitMQConsumer
                     using var scope = _serviceProvider.CreateScope();
                     var contactService = scope.ServiceProvider.GetRequiredService<IContactService>();
 
-                    // Salva o contato e obtém a resposta completa
                     var createdContact = await contactService.CreateContact(request);
 
-                    // Atualiza o último contato criado
                     _lastCreatedContact = createdContact;
                     _logger.LogInformation($"Último contato criado atualizado: {JsonSerializer.Serialize(_lastCreatedContact)}");
 

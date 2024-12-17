@@ -101,13 +101,15 @@ namespace TechChallenge.Application.IntegrationTests
         [Trait("Category", "Integration")]
         public async Task DeleteContact_ShouldRemoveContactFromDatabase()
         {
-            var contact = _context.Contacts.First();
+            var contact = await _context.Contacts.FirstAsync();
 
-            _service.DeleteContact(contact.ContactId);
+            await _service.DeleteContact(contact.ContactId);  
 
-            var deletedContact = await _context.Contacts.FirstOrDefaultAsync(c => c.ContactId == contact.ContactId);
+            var deletedContact = await _context.Contacts.AsNoTracking()
+                .FirstOrDefaultAsync(c => c.ContactId == contact.ContactId);
             Assert.Null(deletedContact);
         }
+
 
         [Fact]
         [Trait("Category", "Integration")]

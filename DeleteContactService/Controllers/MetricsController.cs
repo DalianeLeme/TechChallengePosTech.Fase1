@@ -42,23 +42,19 @@ namespace DeleteContactService.Controllers
             var client = _httpClientFactory.CreateClient();
             var stopwatch = Stopwatch.StartNew();
 
-            // Usar um ID fixo para a requisição de teste
             var fixedId = "00000000-0000-0000-0000-000000000001";
             var response = await client.DeleteAsync($"https://localhost:7021/DeleteContact/Delete/{fixedId}");
 
             stopwatch.Stop();
             var latency = stopwatch.Elapsed.TotalSeconds;
 
-            // Registrar a métrica com um path genérico para facilitar a agregação
             RequestDuration.WithLabels("/DeleteContact/Delete/{id}", "DELETE").Observe(latency);
 
-            // Verificar se a requisição foi bem-sucedida
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Request to /DeleteContact/Delete/{fixedId} failed with status code {response.StatusCode}");
             }
 
-            // Retorna a latência em milissegundos
             return latency * 1000;
         }
 

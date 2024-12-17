@@ -54,7 +54,7 @@ namespace GetContactService.Controllers
                 throw new Exception($"Request to /Contacts/GetAllContacts failed with status code {response.StatusCode}");
             }
 
-            return latency * 1000; // Retorna latência em milissegundos
+            return latency * 1000;
         }
 
         private float GetCpuUsage()

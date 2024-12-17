@@ -43,7 +43,6 @@ namespace CreateContactService.Controllers
             var client = _httpClientFactory.CreateClient();
             var stopwatch = Stopwatch.StartNew();
 
-            // Dados do contato no corpo da solicitação
             var contactData = new
             {
                 Name = "Test Name",
@@ -52,30 +51,25 @@ namespace CreateContactService.Controllers
                 Phone = "123456789"
             };
 
-            // Serialização para JSON
             var jsonContent = new StringContent(
                 JsonSerializer.Serialize(contactData),
                 Encoding.UTF8,
                 "application/json");
 
-            // Envio da solicitação POST
             var response = await client.PostAsync("https://localhost:7251/CreateContacts/Create", jsonContent);
 
             stopwatch.Stop();
             var latency = stopwatch.Elapsed.TotalSeconds;
 
-            // Registra a latência no histograma Prometheus
             RequestDuration.WithLabels("/CreateContacts/Create", "POST").Observe(latency);
 
-            // Lança exceção caso o status não seja bem-sucedido
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Request to /CreateContacts/Create failed with status code {response.StatusCode}");
             }
 
-            return latency * 1000; // Retorna a latência em milissegundos
+            return latency * 1000; 
         }
-
 
         private float GetCpuUsage()
         {

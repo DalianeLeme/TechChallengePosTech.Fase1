@@ -59,10 +59,8 @@ public class UpdateRabbitMQConsumer
                     using var scope = _serviceProvider.CreateScope();
                     var contactService = scope.ServiceProvider.GetRequiredService<IContactService>();
 
-                    // Atualiza o contato e obtém a resposta completa
                     var updatedContact = await contactService.UpdateContact(request);
 
-                    // Atualiza o último contato atualizado
                     _lastUpdatedContact = updatedContact;
                     _logger.LogInformation($"Último contato atualizado: {JsonSerializer.Serialize(_lastUpdatedContact)}");
 

@@ -16,7 +16,6 @@ namespace DeleteContactService.Messaging
             using var connection = await factory.CreateConnectionAsync();
             using var channel = await connection.CreateChannelAsync();
 
-            // Declaração da fila
             await channel.QueueDeclareAsync(
                 queue: queueName,
                 durable: true,
@@ -24,11 +23,9 @@ namespace DeleteContactService.Messaging
                 autoDelete: false,
                 arguments: null);
 
-            // Serialização da mensagem para JSON
             var serializedMessage = JsonSerializer.Serialize(message);
             var body = Encoding.UTF8.GetBytes(serializedMessage);
 
-            // Publicação na fila
             await channel.BasicPublishAsync(
                 exchange: "",
                 routingKey: queueName,

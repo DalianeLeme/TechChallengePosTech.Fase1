@@ -34,25 +34,20 @@ namespace DeleteContactService.Controllers
         {
             try
             {
-                // Verifica se o ID é válido
                 if (id == Guid.Empty)
                 {
                     httpRequestCounter.WithLabels("400", "DELETE", "/contacts/delete").Inc();
                     return BadRequest("Invalid ID provided.");
                 }
 
-                // Publica a solicitação de exclusão na fila RabbitMQ
                 await _publisher.Publish(id, "delete_contact_queue");
 
-                // Incrementa a métrica de sucesso
                 httpRequestCounter.WithLabels("202", "DELETE", "/contacts/delete").Inc();
 
-                // Retorna aceitação da solicitação
                 return Accepted("Delete request sent to the queue.");
             }
             catch (Exception ex)
             {
-                // Incrementa a métrica de erro
                 httpRequestCounter.WithLabels("500", "DELETE", "/contacts/delete").Inc();
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }

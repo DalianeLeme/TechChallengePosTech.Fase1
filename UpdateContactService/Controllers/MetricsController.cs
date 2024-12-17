@@ -43,11 +43,10 @@ namespace UpdateContactService.Controllers
             var client = _httpClientFactory.CreateClient();
             var stopwatch = Stopwatch.StartNew();
 
-            // Ajustar os dados para corresponder ao formato esperado
             var payload = new StringContent(
                 JsonSerializer.Serialize(new
                 {
-                    id = Guid.Parse("b3d4f72b-77ed-4c54-95d4-94a7c1a95c2b"), // Substitua por um ID válido existente
+                    id = Guid.Parse("b3d4f72b-77ed-4c54-95d4-94a7c1a95c2b"),
                     name = "Updated Name",
                     email = "updated@example.com",
                     ddd = 11,
@@ -56,23 +55,20 @@ namespace UpdateContactService.Controllers
                 Encoding.UTF8,
                 "application/json");
 
-            // Envio da solicitação PUT
             var response = await client.PutAsync("https://localhost:7252/UpdateContact/Update", payload);
 
             stopwatch.Stop();
             var latency = stopwatch.Elapsed.TotalSeconds;
 
-            // Registra a latência no Prometheus
             RequestDuration.WithLabels("/UpdateContact/Update", "PUT").Observe(latency);
 
-            // Verifica a resposta
             if (!response.IsSuccessStatusCode)
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
                 throw new Exception($"Request to /UpdateContact/Update failed with status code {response.StatusCode}: {errorContent}");
             }
 
-            return latency * 1000; // Retorna a latência em milissegundos
+            return latency * 1000;
         }
 
 
