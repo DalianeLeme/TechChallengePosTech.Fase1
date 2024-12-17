@@ -16,7 +16,7 @@ namespace TechChallenge.Application.IntegrationTests
         public ServiceIntegrationTests()
         {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Test.json")
                 .Build();
 
             var options = new DbContextOptionsBuilder<ContactDbContext>()

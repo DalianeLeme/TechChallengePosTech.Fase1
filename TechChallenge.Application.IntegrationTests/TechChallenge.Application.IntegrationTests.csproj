@@ -22,6 +22,12 @@
     <ProjectReference Include="..\TechChallenge.Domain\TechChallenge.Domain.csproj" />
     <ProjectReference Include="..\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="appsettings.Test.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />

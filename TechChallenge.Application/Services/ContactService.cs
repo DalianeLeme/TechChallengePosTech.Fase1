@@ -1,10 +1,9 @@
-﻿using TechChallenge.Domain.Models.Base;
+﻿using Microsoft.EntityFrameworkCore;
+using TechChallenge.Domain.Models.Base;
 using TechChallenge.Domain.Models.Requests;
 using TechChallenge.Domain.Models.Responses;
 using TechChallenge.Infrastructure.Context;
 using TechChallenge.Infrastructure.Entities;
-using Microsoft.EntityFrameworkCore;
-using Azure.Core;
 
 namespace TechChallenge.Application.Services
 {
