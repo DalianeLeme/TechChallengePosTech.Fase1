@@ -77,7 +77,7 @@ Implementando práticas de Integração contínua (CI), testes de integração e
 <br></br>
 
 # Fase 3
-:construction:  Projeto em construção  :construction:
+:construction:  Tranformando API em microsserviços com comunicação por eventos via RabbitMQ  :construction:
 <br></br>
 
 
