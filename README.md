@@ -1,4 +1,4 @@
-﻿<h1 align="center"> Tech Challenge - Pós Tech </h1>
+﻿﻿<h1 align="center"> Tech Challenge - Pós Tech </h1>
 
 ![Capa com o nome do curso da pós graduação](./Assets/capa-readme.jpg)
 
@@ -76,14 +76,62 @@ Implementando práticas de Integração contínua (CI), testes de integração e
 :mag_right: TechChallenge.Application.IntegrationTests
 <br></br>
 
-# Fase 3
-:construction:  Tranformando API em microsserviços com comunicação por eventos via RabbitMQ  :construction:
-<br></br>
+# :hatched_chick: Fase 3
+Refatorando API em microsserviços com comunicação por eventos via RabbitMQ </br>
+As principais alterações foram:
 
+- `Estrutura`: API virou 5 Microsserviços </br>
+:bookmark_tabs:Microsserviço CreateContactService - Publisher </br>
+:bookmark_tabs:Microsserviço UpdateContactService - Publisher </br>
+:bookmark_tabs:Microsserviço GetContactService - Publisher </br>
+:bookmark_tabs:Microsserviço CreateContactService - Publisher </br>
+:bookmark_tabs:Microsserviço DataPersistenceService - Consumers </br>
+
+- `RabbitMQ`: A comunicação entre os microsserviços é feita pela mensageria RabbitMQ </br>
+:small_orange_diamond: Fila create_contact_queue </br>
+:small_orange_diamond: Fila update_contact_queue </br>
+:small_orange_diamond: Fila get_contacts_queue </br>
+:small_orange_diamond: Fila delete_contact_queue </br>
+
+- `Prometheus`: Agora cada microsserviço tem seu endpoint /metrics, ou seja, cada microsserviço possui suas métricas. </br>
+:small_red_triangle_down: Métricas Create: </br>
+**create_contact_request_duration_milliseconds:** Latência do endpoint de create </br>
+**contacts_create_request_total:** Contagem de requisições por statusCode. </br>
+**cpu_usage_percentage_create:** Uso da CPU em tempo real em porcentagem </br>
+**memory_usage_bytes_create:** Uso de memória em tempo real em bytes </br>
+
+:small_red_triangle_down: Métricas Update: </br>
+**update_contact_request_duration_milliseconds:** Latência do endpoint de update </br>
+**contacts_update_request_total:** Contagem de requisições por statusCode. </br>
+**cpu_usage_percentage_update:** Uso da CPU em tempo real em porcentagem </br>
+**memory_usage_bytes_uppdate:** Uso de memória em tempo real em bytes </br>
+
+:small_red_triangle_down: Métricas Get: </br>
+**get_contact_request_duration_milliseconds:** Latência do endpoint de get </br>
+**contacts_get_request_total:** Contagem de requisições por statusCode. </br>
+**cpu_usage_percentage_get:** Uso da CPU em tempo real em porcentagem </br>
+**memory_usage_bytes_get:** Uso de memória em tempo real em bytes </br>
+
+:small_red_triangle_down: Métricas Delete: </br>
+**delete_contact_request_duration_milliseconds:** Latência do endpoint de get </br>
+**contacts_delete_request_total:** Contagem de requisições por statusCode. </br>
+**cpu_usage_percentage_delete:** Uso da CPU em tempo real em porcentagem </br>
+**memory_usage_bytes_delete:** Uso de memória em tempo real em bytes </br>
+
+- `Grafana`: Reoprganização dos dashboards para exibição por microsserviços. As visualizalizações continuam as mesmas mudando apenas que é por microsserviço agora. </br>
+:red_circle:Create:
+![Descrição da imagem](./Assets/GrafanaCreate.png)
+:red_circle:Update: 
+![Descrição da imagem](./Assets/GrafanaUpdate.png)
+:red_circle:Get:
+![Descrição da imagem](./Assets/GrafanaGet.png)
+:red_circle:Delete:
+![Descrição da imagem](./Assets/GrafanaDelete.png)
+<br></br>
 
 # :heavy_check_mark: Técnicas e tecnologias utilizadas
 `.NET8` `C#` `SQL Server` `GitHub Actions` `Prometheus` `Grafana` `Testes unitários` `Testes de Integração` `xUnit` `EntityFramework`
-`FluentValidator`
+`FluentValidator` `RabbitMq` `Eventos`
 <br></br>
 
 # :busts_in_silhouette: Autores
