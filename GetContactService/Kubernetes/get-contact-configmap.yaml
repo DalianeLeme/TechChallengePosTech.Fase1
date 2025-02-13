@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: get-contacts-config
+  namespace: default
+  labels:
+    app: get-contacts
+  annotations:
+    description: "Configuração do microsserviço Get Contacts."
+data:
+  RABBITMQ_HOST: "rabbitmq.default.svc.cluster.local"
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: "guest"
+  RABBITMQ_PASSWORD: "guest"
+  APP_SETTING: "GetContactsSpecificConfig"

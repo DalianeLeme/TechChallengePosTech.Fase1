@@ -11,18 +11,14 @@ builder.Services.AddSingleton<IRabbitMQPublisher, RabbitMQGetPublisher>();
 
 var app = builder.Build();
 
-
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Get Contact Service API V1");
-        c.RoutePrefix = string.Empty;
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Create Contact Service API V1");
+    c.RoutePrefix = string.Empty; // Define a rota raiz como o Swagger UI
+});
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

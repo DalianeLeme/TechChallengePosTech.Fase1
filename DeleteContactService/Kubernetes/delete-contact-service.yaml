@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: delete-contact-service
+spec:
+  type: NodePort
+  selector:
+    app: delete-contact
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

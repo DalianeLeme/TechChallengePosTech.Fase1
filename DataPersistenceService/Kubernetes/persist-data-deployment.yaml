@@ -1,0 +1,32 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: persist-contacts-deployment
+  labels:
+    app: persist-contacts
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: persist-contacts
+  template:
+    metadata:
+      labels:
+        app: persist-contacts
+    spec:
+      containers:
+        - name: persist-contacts
+          image: dalileme/persist-contacts:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: persist-contacts-config
+          volumeMounts:
+            - mountPath: /data
+              name: persist-data-volume
+      volumes:
+        - name: persist-data-volume
+          emptyDir: {}
+      imagePullSecrets:
+        - name: myregistrykey

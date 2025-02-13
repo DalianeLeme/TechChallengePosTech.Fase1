@@ -30,15 +30,12 @@ builder.Services.AddSingleton<DeleteRabbitMQConsumer>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Data Persistence Contact Service API V1");
-        c.RoutePrefix = string.Empty; // Abre na raiz
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Create Contact Service API V1");
+    c.RoutePrefix = string.Empty; // Define a rota raiz como o Swagger UI
+});
 
 // Consumidores
 var createConsumer = app.Services.GetRequiredService<CreateRabbitMQConsumer>();
@@ -53,7 +50,7 @@ Task.Run(() => updateConsumer.StartConsumingAsync());
 Task.Run(() => deleteConsumer.StartConsumingAsync());
 Task.Run(() => getConsumer.StartConsumingAsync());
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

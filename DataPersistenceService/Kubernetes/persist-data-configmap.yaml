@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: persist-contacts-config
+  namespace: default
+  labels:
+    app: data-persistence
+  annotations:
+    description: "Configuração do microsserviço de Persistência de Dados."
+data:
+  RABBITMQ_HOST: "rabbitmq.default.svc.cluster.local"
+  SQLSERVER_CONNECTION_STRING: "Server=sqlserver.default.svc.cluster.local;Database=TechChallengeDB;User Id=sa;Password=your_password;"

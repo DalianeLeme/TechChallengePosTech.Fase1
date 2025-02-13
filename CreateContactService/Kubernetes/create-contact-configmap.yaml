@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: create-contacts-config
+  namespace: default
+  labels:
+    app: create-contacts
+  annotations:
+    description: "Configuração do microsserviço Create Contacts."
+data:
+  RABBITMQ_HOST: "rabbitmq.default.svc.cluster.local"
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: "guest"
+  RABBITMQ_PASSWORD: "guest"
+  APP_SETTING: "CreateContactsSpecificConfig"

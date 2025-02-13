@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: create-contact-deployment
+  labels:
+    app: create-contact
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: create-contact
+  template:
+    metadata:
+      labels:
+        app: create-contact
+    spec:
+      containers:
+        - name: create-contact-container
+          image: dalileme/create-contact-service:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: create-contacts-config
+          volumeMounts:
+            - mountPath: "/app/config"
+              name: config-volume
+      volumes:
+        - name: config-volume
+          configMap:
+            name: create-contacts-config
+      imagePullSecrets:
+        - name: myregistrykey
