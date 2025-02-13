@@ -129,6 +129,9 @@ As principais alterações foram:
 ![Descrição da imagem](./Assets/GrafanaDelete.png)
 <br></br>
 
+# :chicken: Fase 4
+:construction: Em construção :construction:
+
 # :heavy_check_mark: Técnicas e tecnologias utilizadas
 `.NET8` `C#` `SQL Server` `GitHub Actions` `Prometheus` `Grafana` `Testes unitários` `Testes de Integração` `xUnit` `EntityFramework`
 `FluentValidator` `RabbitMq` `Eventos`
